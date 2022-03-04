@@ -1,0 +1,11 @@
+.gym-map-area{
+    position: absolute;
+    padding: 0px 12px;
+    border-radius: 45px;
+    &.on{
+        border: 2px solid #73AD21;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+}

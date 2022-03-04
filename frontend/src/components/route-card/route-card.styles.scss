@@ -1,0 +1,72 @@
+.route-card{
+    min-width: 80%;
+    height: 60px;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    margin: 0 7.5px 15px;
+    opacity: .8;
+    position: relative;
+    z-index: 1;
+
+    &:first-child {
+        margin-right: 7.5px;
+    }
+
+    &:last-child {
+        margin-left: 7.5px;
+    }
+
+    &:hover {
+        cursor: pointer;   
+        opacity: 1;
+    }
+
+    &.green{
+        background-color: #40a624;
+    }
+    &.red{
+        background-color: #b0000f;
+    }
+    &.blue{
+        background-color: #006ab0;
+    }
+    &.yellow{
+        background-color: #f7e152;
+    }
+    &.pink{
+        background-color: #bf1f9c;
+    }
+
+    .add-or-remove-route{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        z-index: 2;
+    }
+
+    .content {
+        height: 75px;
+        padding: 0px 25px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: absolute; //No matter what the other elements are doing, keep this in the base location
+
+        .title {
+        font-weight: bold;
+        font-size: 26px;
+        margin-right: 20px;
+        -webkit-text-stroke: 1px black;
+        color: white;
+        }
+
+        .subtitle {
+        font-size: 18px;
+        }
+    }
+
+}

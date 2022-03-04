@@ -1,0 +1,13 @@
+.clear-routes{
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: red;
+    border-width: 1.5px;
+    position: absolute;
+    bottom: 0px;
+    right: 88px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

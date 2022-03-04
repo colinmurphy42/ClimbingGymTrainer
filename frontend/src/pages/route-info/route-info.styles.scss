@@ -1,0 +1,32 @@
+.route-info{
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    padding: 30px 0px;
+    border-radius: 5px;
+    border-bottom: 2px solid;
+    position: relative;
+
+    .title{
+        margin: 0 15px -10px 40px;
+    }
+
+    .area-link{
+        display: inline;
+        text-decoration: underline;
+    }
+}
+
+.top-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn{
+    margin-top: 10px;
+}
+
+.description{
+    margin-top: 15px;
+}
