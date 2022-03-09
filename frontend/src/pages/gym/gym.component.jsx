@@ -1,5 +1,4 @@
 import React from 'react';
-import './homepage.styles.scss';
 import GymMap from '../../components/gym-map/gym-map.component';
 import RouteCardDisplay from '../../components/route-card-display/route-card-display.component';
 import ROUTE_DATA from '../../data/routes/routes.data';
@@ -10,7 +9,7 @@ const Gym = () => {
     const areaFilteredRoutes = (gymSelectedArea !== 'none' ? ROUTE_DATA.filter(route => route.area === gymSelectedArea.toLowerCase()) : ROUTE_DATA);
     
     return(
-        <div className='homepage page'>
+        <div className='gym page'>
             <h1>Gym Page</h1>
             <GymMap gymSelectedArea={gymSelectedArea}/>
             <RouteCardDisplay routes={areaFilteredRoutes}/>

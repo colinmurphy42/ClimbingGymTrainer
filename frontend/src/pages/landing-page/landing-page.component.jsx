@@ -1,15 +1,7 @@
-import React, { useState, useEffect} from 'react';
-import axios from 'axios';
+import React from 'react';
 import './landing-page.styles.scss';
 
 const LandingPage = () => {
-    const [test, setTest] = useState([]);
-    useEffect(() => {
-        axios.get("/api/areas/")
-        .then((res) => setTest(res.data))
-        .catch((err) => console.log(err));
-    });
-
     return(
         <div className='landing-page page'>
             <h1>Welcome</h1>
@@ -22,11 +14,6 @@ const LandingPage = () => {
                 You can see your list by clicking My Routes and find more information about each route by clicking on them.
                 Enjoy!
             </p>
-            {
-                test.map((item, index) => (
-                    <h1 key={index}>{item.name}</h1>
-                ))
-            }
         </div>
     );
 };
