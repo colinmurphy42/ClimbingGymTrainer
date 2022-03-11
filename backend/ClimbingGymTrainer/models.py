@@ -4,7 +4,6 @@ from django.db import models
 # Create your models here.
 class area(models.Model):
     name = models.CharField(max_length=20)
-    value = models.CharField(max_length=20)
     mapYLocation = models.IntegerField()
     mapXLocation = models.IntegerField()
     

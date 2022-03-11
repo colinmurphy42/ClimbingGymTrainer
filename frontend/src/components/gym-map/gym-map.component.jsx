@@ -24,11 +24,11 @@ class GymMap extends Component{
             <div className='gym-map'>
                 <img src={svgFile} height='300px' width='500px' alt='gym map'/>
                 {
-                    areaInfo.map(({value, ...otherLocationProps}, index) => (
+                    areaInfo.map(({name, ...otherLocationProps}, index) => (
                         <GymMapArea 
                             key={index} 
-                            isSelected={value === gymSelectedArea}
-                            value={value}
+                            isSelected={name.toLowerCase() === gymSelectedArea}
+                            name={name}
                             {...otherLocationProps}
                         />
                     ))

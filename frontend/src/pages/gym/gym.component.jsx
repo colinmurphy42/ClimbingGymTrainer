@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 
 const Gym = () => {
     const gymSelectedArea = useSelector(state => state.gymSelectedArea);
-    const areaFilteredRoutes = (gymSelectedArea !== 'none' ? ROUTE_DATA.filter(route => route.area === gymSelectedArea.toLowerCase()) : ROUTE_DATA);
+    const areaFilteredRoutes = (gymSelectedArea !== 'all routes' ? ROUTE_DATA.filter(route => route.area === gymSelectedArea.toLowerCase()) : ROUTE_DATA);
     
     return(
         <div className='gym page'>
