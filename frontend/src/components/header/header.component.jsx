@@ -18,6 +18,9 @@ const Header = () => (
             <Link to='/myRoutes' className='option'>
                 My Routes
             </Link>
+            <Link to='/addRoute' className='option'>
+                Add Routes
+            </Link>
         </div>
     </div>
 )

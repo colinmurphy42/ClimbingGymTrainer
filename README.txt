@@ -14,3 +14,17 @@ npm install http-proxy-middleware --save
 
 Helpful docs:
 React Hooks - https://reactjs.org/docs/hooks-effect.html
+
+Tutorial on React + Django Forms
+https://medium.com/analytics-vidhya/how-to-use-react-in-django-the-hard-way-6ef2bf8c5d6f
+
+
+To start backend:
+cd into backend
+python manage.py runserver
+
+To start frontend:
+cd into frontend
+yarn start
+OR 
+npm start
