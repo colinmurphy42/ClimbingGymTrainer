@@ -10,7 +10,8 @@ npm packages:
 npm install bootstrap
 npm install axios@0.21.1
 npm install http-proxy-middleware --save
-
+npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material
 
 Helpful docs:
 React Hooks - https://reactjs.org/docs/hooks-effect.html

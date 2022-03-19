@@ -1,10 +1,11 @@
 import React from 'react';
 import './landing-page.styles.scss';
+import PageTitle from '../../components/page-title/page-title.component';
 
 const LandingPage = () => {
     return(
         <div className='landing-page page'>
-            <h1>Welcome</h1>
+            <PageTitle title='Welcome'/>
             <p> 
                 Welcome to this climbing gym app!
             </p>
