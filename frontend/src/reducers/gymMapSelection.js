@@ -1,4 +1,4 @@
-const gymMapSelectionReducer = (state='none', action) =>{
+const gymMapSelectionReducer = (state='all routes', action) =>{
     switch(action.type){
         case 'CHANGE_SELECTED_AREA':
             return action.payload

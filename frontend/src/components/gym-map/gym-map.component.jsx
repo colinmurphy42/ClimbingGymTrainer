@@ -1,40 +1,34 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import svgFile from '../../assets/gym-shape.svg'
 import './gym-map.styles.scss';
 import GymMapArea from '../gym-map-area/gym-map-area.component';
-import AREA_INFO from '../../data/areas/areas.info.js';
+import axios from 'axios';
 
-class GymMap extends Component{
-    constructor(){
-        super()
-        this.state={
-            areaInfo: AREA_INFO,
-        }
-    }
+const GymMap = ({gymSelectedArea}) => {
+    const[areaInfo, setAreaInfo] = useState([]);
 
-    areaChangeHandler = (areaValue) =>{
-        console.log(areaValue.value);
-        this.setState({selectedArea: areaValue.value});
-    }
+    useEffect(() => {   //This use effect grabs all the area data and puts it into the areaInfo state
+        axios.get('/api/areas/')
+        .then((res) => setAreaInfo(res.data))
+        .catch((err) => {
+            alert(err.message);
+        })
+    }, []);
 
-    render(){
-        const {areaInfo} = this.state;
-        const {gymSelectedArea} = this.props
-        return(
-            <div className='gym-map'>
-                <img src={svgFile} height='300px' width='500px' alt='gym map'/>
-                {
-                    areaInfo.map(({value, ...otherLocationProps}, index) => (
-                        <GymMapArea 
-                            key={index} 
-                            isSelected={value === gymSelectedArea}
-                            value={value}
-                            {...otherLocationProps}
-                        />
-                    ))
-                }
-            </div>
-        );
-    }
+    return(
+        <div className='gym-map'>
+            <img src={svgFile} height='300px' width='500px' alt='gym map'/>
+            {
+                areaInfo.map(({name, ...otherLocationProps}, index) => (
+                    <GymMapArea 
+                        key={index} 
+                        isSelected={name.toLowerCase() === gymSelectedArea}
+                        name={name}
+                        {...otherLocationProps}
+                    />
+                ))
+            }
+        </div>
+    );
 }
 export default GymMap
