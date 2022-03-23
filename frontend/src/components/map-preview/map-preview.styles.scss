@@ -1,0 +1,10 @@
+.map-preview{
+    position: relative;
+    margin: 45px 0;
+    border: 1px solid black;
+
+    .icon-container {
+        position: absolute;
+        border-radius: 45px;
+    }
+}

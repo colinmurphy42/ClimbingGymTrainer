@@ -3,15 +3,15 @@ import { useDispatch } from 'react-redux';
 import { changeSelectedMapArea } from '../../actions';
 import './gym-map-area.styles.scss'
 
-const GymMapArea = ({name, yLocation, xLocation, isSelected}) => {
+const GymMapArea = ({name, mapYLocation, mapXLocation, isSelected}) => {
     const dispatch = useDispatch();
     const stateClass = isSelected ? 'on' : 'off';
     return(
         <div 
             className={`gym-map-area ${stateClass}`}
             style={{
-                top: `${yLocation}%`,
-                left: `${xLocation}%`
+                top: `${mapYLocation}%`,
+                left: `${mapXLocation}%`
             }}
             onClick={() => dispatch(changeSelectedMapArea(name.toLowerCase()))}
         >

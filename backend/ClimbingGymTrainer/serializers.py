@@ -4,7 +4,7 @@ from .models import route, area
 class AreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = area
-        fields = ('id', 'name', 'value', 'mapYLocation', 'mapXLocation')
+        fields = ('id', 'name', 'mapYLocation', 'mapXLocation')
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:

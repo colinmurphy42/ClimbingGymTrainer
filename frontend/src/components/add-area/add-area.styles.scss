@@ -1,0 +1,23 @@
+.add-area{
+    margin: 20px 0;
+
+    .add-area-form{
+        display: inline-block;
+    }
+
+    .form-input{
+        margin: 20px 15px;
+        &.name{
+            width: 85%
+        }
+    }
+
+    .submit-btn-container{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .submit-btn{
+        width: 200px;
+    }
+}
