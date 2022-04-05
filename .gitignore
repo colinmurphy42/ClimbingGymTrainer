@@ -35,6 +35,7 @@ media
 
 #Virtual Env
 venv/
+ClimbingGymTrainer/
 
 # Visual Studio Code # 
 .vscode/* 
@@ -43,6 +44,10 @@ venv/
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
+#Pipfiles
+Pipfile
+Pipfile.lock
 
 #Random IDE files
 .idea/
