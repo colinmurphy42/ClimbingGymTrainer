@@ -21,6 +21,9 @@ const Header = () => (
             <Link to='/addArea' className='option'>
                 Add Area
             </Link>
+            <Link to='/signup' className='option'>
+                Sign Up Here
+            </Link>
         </div>
     </div>
 )
