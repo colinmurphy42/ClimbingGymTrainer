@@ -7,6 +7,7 @@ import EnhancedEncryptionIcon from '@mui/icons-material/EnhancedEncryption';
 import HttpsIcon from '@mui/icons-material/Https';
 import './sign-up.styles.scss'
 import { Link } from "react-router-dom";
+import TextInputWithIcon from "../text-input-with-icon/text-input-with-icon.component";
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -23,6 +24,30 @@ const SignUp = () => {
             <Typography variant='body1'>Join us and climb at your best ability!</Typography>
             <Box width={400}>
             <form className='sign-up-form' onSubmit={handleSubmit}>
+                <TextInputWithIcon
+                    name='Username'
+                    value={username}
+                    setValue={setUsername}
+                    icon={<AccountCircle/>}
+                />
+                <TextInputWithIcon
+                    name='Email'
+                    value={email}
+                    setValue={setEmail}
+                    icon={<EmailIcon/>}
+                />
+                <TextInputWithIcon
+                    name='Password'
+                    value={password}
+                    setValue={setPassword}
+                    icon={<HttpsIcon/>}
+                />
+                <TextInputWithIcon
+                    name='Confirm Password'
+                    value={confirmPassword}
+                    setValue={setConfirmPass}
+                    icon={<EnhancedEncryptionIcon/>}
+                />
                 <TextField 
                     label='Username'
                     value={username}
