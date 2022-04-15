@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from "react";
-import { Typography, Button } from "@mui/material";
+import React, {useState} from "react";
+import { Typography, Button, Box } from "@mui/material";
+import { Link } from "react-router-dom";
 import TextInputWithIcon from "../text-input-with-icon/text-input-with-icon.component";
 import AccountCircle from '@mui/icons-material/AccountCircle';
 import HttpsIcon from '@mui/icons-material/Https';
@@ -39,6 +40,9 @@ const SignIn = () => {
                     </div>
                 </form>
              </Box>
+             <div className='sign-up-link'>
+                    <Link to='/signup'>Need to make an account?</Link>
+                </div>
         </div>
     );
 }

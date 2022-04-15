@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import route, area
+from .models import Route, Area
 
 class AreaSerializer(serializers.ModelSerializer):
     class Meta:
-        model = area
+        model = Area
         fields = ('id', 'name', 'mapYLocation', 'mapXLocation')
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = route
+        model = Route
         fields = ('id', 'grade', 'area', 'color', 'description')

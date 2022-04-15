@@ -41,74 +41,14 @@ const SignUp = () => {
                     value={password}
                     setValue={setPassword}
                     icon={<HttpsIcon/>}
+                    type='password'
                 />
                 <TextInputWithIcon
                     name='Confirm Password'
-                    value={confirmPassword}
+                    value={confirmPass}
                     setValue={setConfirmPass}
                     icon={<EnhancedEncryptionIcon/>}
-                />
-                <TextField 
-                    label='Username'
-                    value={username}
-                    className='form-input'
-                    variant='standard'
-                    onChange={(e) => setUsername(e.target.value)}
-                    fullWidth
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <AccountCircle />
-                          </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField 
-                    label='Email'
-                    value={email}
-                    className='form-input'
-                    variant='standard'
-                    onChange={(e) => setEmail(e.target.value)}
-                    fullWidth
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <EmailIcon />
-                          </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField 
-                    label='Password'
-                    value={password}
-                    className='form-input'
-                    variant='standard'
-                    type={'password'}
-                    onChange={(e) => setPassword(e.target.value)}
-                    fullWidth
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                            <HttpsIcon />
-                          </InputAdornment>
-                        ),
-                    }}
-                />
-                <TextField 
-                    label='Confirm Password'
-                    value={confirmPass}
-                    className='form-input'
-                    variant='standard'
-                    type={'password'}
-                    onChange={(e) => setConfirmPass(e.target.value)}
-                    fullWidth
-                    InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">
-                              <EnhancedEncryptionIcon />
-                          </InputAdornment>
-                        ),
-                    }}
+                    type='password'
                 />
                 <div className='submit-btn-container'>
                     <Button

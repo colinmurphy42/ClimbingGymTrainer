@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import AreaSerializer
-from .models import area
+from .models import Area
 
 # Create your views here.
 
-class AreaView(viewsets.ModelViewSet): #viewsets provides implementation for CRUD operations by default
+class AreaViewSet(viewsets.ModelViewSet): #viewsets provides implementation for CRUD operations by default
+    queryset = Area.objects.all()
     serializer_class = AreaSerializer
-    queryset = area.objects.all()
