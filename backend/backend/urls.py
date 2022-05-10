@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
+from rest_framework import routers #router class lets us use things like /areas/ (Returns all areas) and /areas/id (Returns single area using primary key) etc.
 from ClimbingGymTrainer import views
 
 router = routers.DefaultRouter()
 router.register(r'areas', views.AreaView, 'area')
+router.register(r'routes', views.RouteView, 'route')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)), #router class lets us use things like /areas/ (Returns all areas) and /areas/id (Returns single area using primary key) etc.
+    path('api/', include(router.urls)), 
 ]

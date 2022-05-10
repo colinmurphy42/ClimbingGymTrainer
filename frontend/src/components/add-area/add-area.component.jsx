@@ -6,30 +6,35 @@ import { Button, Grid, TextField } from "@mui/material";
 import MapPreview from "../map-preview/map-preview.component";
 
 const AddArea = () => {
-    const[name, setName] = useState('');
-    const[yLocation, setYLocation] = useState(0);
-    const[xLocation, setXLocation] = useState(0);
+    const[inputs, setInputs] = useState({
+        name: '',
+        mapYLocation: 0,
+        mapXLocation: 0
+    });
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))  //Update the inputs object. ...values means use the same values, [name] means update entry with key=name to the new value
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const formObj = {
-            name: name,
-            mapYLocation: yLocation,
-            mapXLocation: xLocation
-        }
         axios.post(
             '/api/areas/', //API
-            formObj, //Object to send to API 
+            inputs, //Object to send to API 
             {
                 headers: {
                     'X-CSRFToken' : getCookie('csrftoken') //Details about the call
-                },
+                }
             }
         )
         .then((res) => {
-            setName(''); 
-            setYLocation(0); 
-            setXLocation(0);
+            setInputs({ //Reset inputs
+                name: '',
+                mapYLocation: 0,
+                mapXLocation: 0
+            })
         });
     };
 
@@ -45,31 +50,31 @@ const AddArea = () => {
                                 className='form-input name'
                                 type='text'
                                 variant='standard'
-                                value={name} 
-                                onChange={(e) => setName(e.target.value)}
+                                value={inputs.name} 
+                                onChange={handleChange}
                                 required
                                 autoComplete="off"
                             />
                             <TextField
-                                name='yLocation'
+                                name='mapYLocation'
                                 label='Y Location'
                                 className='form-input'
                                 type='number'
                                 inputProps={{min:0}}
                                 variant='standard'
-                                value={yLocation} 
-                                onChange={(e) => setYLocation(e.target.value)}
+                                value={inputs.mapYLocation} 
+                                onChange={handleChange}
                                 required
                             />
                             <TextField
-                                name='xLocation'
+                                name='mapXLocation'
                                 label='X Location'
                                 className='form-input'
                                 type='number'
                                 inputProps={{min:0}}
                                 variant='standard'
-                                value={xLocation} 
-                                onChange={(e) => setXLocation(e.target.value)}
+                                value={inputs.mapXLocation} 
+                                onChange={handleChange}
                                 required
                             />
                         </div>
@@ -86,9 +91,9 @@ const AddArea = () => {
                 </Grid>
                 <Grid item sm={6}>
                     <MapPreview 
-                        name={name}
-                        yLocation={yLocation}
-                        xLocation={xLocation}
+                        name={inputs.name}
+                        yLocation={inputs.mapYLocation}
+                        xLocation={inputs.mapXLocation}
                     />
                 </Grid>
             </Grid>
