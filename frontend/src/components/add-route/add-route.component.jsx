@@ -1,113 +1,129 @@
 import React, {useEffect, useState} from "react";
-import { TextField, Select, MenuItem } from "@mui/material";
+import { TextField, Grid, Button } from "@mui/material";
 import axios from "axios";
+import {getCookie} from "../../static/csrftoken";
 import "./add-route.styles.scss"
 import BasicSelect from "../basic-select/basic-select.component";
-import Button from '@mui/material/Button';
-import { Grid } from "@mui/material";
 
 
 const AddRoute = () => {
-    const [color, setColor] = useState(''); 
-    const [area, setArea] = useState('');
+    const setterList = ['Colin', 'Ari']; //Hard-coded
+    const colorList = ["Red", "Green", "Yellow", "Pink", "Blue"]; //Hard-coded
     const [areaInfo, setAreaInfo] = useState([]); 
-    const [setter, setSetter] = useState('');
-    const handleChangeColor = (event) => {
-      setColor(event.target.value);
+    const [inputs, setInputs] = useState({
+        color: '',
+        area: '',
+        grade: '',
+        description: '',
+        setter: ''
+    });
+
+    useEffect(() => {   //This use effect grabs all the area data and puts it into the areaInfo state
+        axios.get('/api/areas/')
+            .then((res) => setAreaInfo(res.data.map(area => area)))
+            .catch((err) => {
+                alert(err.message);
+            })
+    }, []);
+
+    const handleChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs(values => ({...values, [name]: value}))
     }
 
-      const handleChangeArea = (event) => {
-        setArea(event.target.value);
-      };
-  
-           //[stateVariable, functionThatUpdatesOurVariable]
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios.post(
+            '/api/routes/', //API route
+            inputs, //Object to send
+            {
+                headers: { //Details about the call
+                    'X-CSRFToken' : getCookie('csrftoken') 
+                },
+            }
+        )
+        .then((res) => {
+            setInputs({ //Reset inputs
+                color: '',
+                area: '',
+                grade: '',
+                description: '',
+                setter: ''
+            });
+        })
+        .catch((err) => {
+            alert(err.message);
+            console.log(err);
+        })
+    }
 
-
-        useEffect(() => {   //This use effect grabs all the area data and puts it into the areaInfo state
-            axios.get('/api/areas/')
-                .then((res) => setAreaInfo(res.data.map(area => area.name)))
-                .then(console.log(areaInfo))
-                .catch((err) => {
-                    alert(err.message);
-                })
-        }, []);
-
-        const handleSubmit = (event) => {
-                    event.preventDefault();
-                    alert(event.target.value)
-                 }
-    
-
-
-return (
-
-    <form className="add-route-form" onSubmit={handleSubmit}>
-        <Grid container spacing={5}>
-
-            <Grid item xs={6}>
-                <BasicSelect
-                    item={color}
-                    setItem={setColor}
-                    name='Color'
-                    listOfItems={
-                        ["Red", "Green", "Yellow", "Pink", "Blue"]
-                    }
-                />
+    return(
+        <form className="add-route-form" onSubmit={handleSubmit}>
+            <Grid container spacing={5}>
+                <Grid item xs={6}>
+                    <BasicSelect
+                        name='color'
+                        label='Color'
+                        value={inputs.color}
+                        handleChange={handleChange}
+                        listOfItems={colorList}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <BasicSelect
+                        name='area'
+                        label='Area'
+                        value={inputs.area}
+                        handleChange={handleChange}
+                        listOfItems={areaInfo}
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                        name="grade"
+                        label="Grade"
+                        value={inputs.grade}
+                        onChange={handleChange}
+                        className="form-input"
+                        placeholder="V0"
+                        required
+                        variant="standard"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <TextField
+                        name="description"
+                        label="Description"
+                        value={inputs.description}
+                        onChange={handleChange}
+                        className="form-input"
+                        required
+                        variant="standard"
+                        fullWidth
+                    />
+                </Grid>
+                <Grid item xs={6}>
+                    <BasicSelect
+                        name='setter'
+                        label='Setter'
+                        value={inputs.setter}
+                        handleChange={handleChange}
+                        listOfItems={setterList}
+                    />
+                </Grid>
             </Grid>
-            <Grid item xs={6}>
-                <BasicSelect
-                    item={area}
-                    setItem={setArea}
-                    name='Area'
-                    listOfItems={areaInfo}
-                />
-            </Grid>
-
-
-            <Grid item xs={6}>
-                <TextField
-                    name="Grade"
-                    className="form-input"
-                    label="Grade"
-                    type="text"
-                    placeholder="V0"
-                    required
-                    variant="standard"
-                    fullWidth
-                />
-
-            </Grid>
-
-            <Grid item xs={6}>
-                <TextField
-                    name="description"
-                    className="form-input"
-                    label="Description"
-                    type="text"
-                    required
-                    variant="standard"
-                    fullWidth
-                />
-
-            </Grid>
-
-            <Grid item xs={6}>
-                <BasicSelect
-                    item={setter}
-                    setItem={setSetter}
-                    name='Setter'
-                    listOfItems={
-                        ["Colin", "Ari"]
-                    }/>
-    
-            </Grid>
-
-        </Grid>
-        <div className="submit-button-container">
-        <Button variant="outlined" color="success" className="submit-button">Submit</Button>
-        </div>
-    </form>
-  );
+            <div className="submit-button-container">
+                <Button 
+                    variant="outlined" 
+                    color="success" 
+                    className="submit-button"
+                    type="submit"
+                >Submit</Button>
+            </div>
+        </form>
+    );
 }
 
 

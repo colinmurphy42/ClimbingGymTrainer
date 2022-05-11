@@ -1,12 +1,14 @@
 from rest_framework import serializers
-from .models import route, area
-
-class AreaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = area
-        fields = ('id', 'name', 'mapYLocation', 'mapXLocation')
+from .models import Route, Area
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = route
-        fields = ('id', 'grade', 'area', 'color', 'description')
+        model = Route
+        fields = ('id', 'grade', 'area', 'color', 'description', 'setter')
+
+
+class AreaSerializer(serializers.ModelSerializer):
+    routes = RouteSerializer(many=True)
+    class Meta:
+        model = Area
+        fields = ('id', 'name', 'mapYLocation', 'mapXLocation', 'routes')
