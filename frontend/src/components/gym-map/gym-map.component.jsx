@@ -19,15 +19,22 @@ const GymMap = ({gymSelectedArea}) => {
         <div className='gym-map'>
             <img src={svgFile} height='300px' width='500px' alt='gym map'/>
             {
-                areaInfo.map(({name, ...otherLocationProps}, index) => (
+                areaInfo.map(({name, id, ...otherLocationProps}, index) => (
                     <GymMapArea 
-                        key={index} 
+                        key={id} 
                         isSelected={name.toLowerCase() === gymSelectedArea}
                         name={name}
                         {...otherLocationProps}
                     />
                 ))
             }
+            <GymMapArea //Separating All Routes because it is not a normal area 
+                key={0} 
+                name={'All Routes'}
+                isSelected={'all routes' === gymSelectedArea}
+                mapYLocation={48}
+                mapXLocation={36}
+            />
         </div>
     );
 }
