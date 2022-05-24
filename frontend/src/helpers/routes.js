@@ -1,7 +1,12 @@
-import ROUTE_DATA from "../data/routes/routes.data"
+import axios from "axios";
 
-export const GetRouteByID = (routeID) => {
-    return(
-        ROUTE_DATA.find(route => route.id == routeID)
-    );
+export const GetRouteByID = async (routeID) => {
+    try{
+        const res = await axios.get(`/api/routes/${routeID}`);
+        return res.data;
+
+    } catch (err) {
+        alert(err.message);
+
+    }
 }

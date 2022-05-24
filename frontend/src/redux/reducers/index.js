@@ -5,7 +5,7 @@ import { combineReducers } from "redux";
 
 const allReducers = combineReducers({
     myRoutes: myRoutesReducer,
-    filteredRoutes: routeFilterReducer,
+    routes: routeFilterReducer,
     gymSelectedArea: gymMapSelectionReducer
 });
 

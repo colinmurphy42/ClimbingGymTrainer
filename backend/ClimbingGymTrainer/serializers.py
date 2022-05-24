@@ -6,6 +6,8 @@ class RouteSerializer(serializers.ModelSerializer):
         model = Route
         fields = ('id', 'grade', 'area', 'color', 'description', 'setter')
 
+        depth=1
+
 
 class AreaSerializer(serializers.ModelSerializer):
     routes = RouteSerializer(many=True)

@@ -6,11 +6,11 @@ import AddOrRemoveRoute from '../add-or-remove-route/add-or-remove-route.compone
 const RouteCard = ({routeID, grade, color, area}) => {
     const navigate = useNavigate();
     return(
-        <div className={`route-card ${color}`}>
+        <div className={`route-card ${color.toLowerCase()}`}>
             <AddOrRemoveRoute routeID={routeID}/>     
             <div className='content' onClick={() => navigate(`/route/${routeID}`)}>
                 <h2 className='title'>{color.toUpperCase()} {grade}</h2>
-                <p className='subtitle'>{area.toUpperCase()}</p>
+                <p className='subtitle'>{area.name}</p>
             </div>
         </div>
     );
