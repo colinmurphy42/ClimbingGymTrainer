@@ -4,7 +4,7 @@ const myRoutesReducer = (listOfRoutes = [], action) => {
             return [...listOfRoutes, action.payload];
 
         case 'REMOVE_ROUTE':
-            return listOfRoutes.filter(routeID => routeID != action.payload);
+            return listOfRoutes.filter(routeID => routeID !== action.payload);
 
         case 'CLEAR_ROUTES':
             return [];

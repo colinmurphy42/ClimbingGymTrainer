@@ -1,42 +1,52 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './route-info.styles.scss';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { changeSelectedMapArea } from '../../actions';
+import { changeSelectedMapArea } from '../../redux/actions';
 import { GetRouteByID } from '../../helpers/routes';
 import AddOrRemoveRoute from '../../components/add-or-remove-route/add-or-remove-route.component'
 
 
-const HandleClick = (area) =>{
-    console.log(area);
-
-}
-
 const RouteInfoPage = () => {
-    const {routeID} = useParams();
-    const {color, grade, area, description, setter} = GetRouteByID(routeID);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    //console.log(match.params)
+    const {routeID} = useParams();
+    const [routeInfo, setRouteInfo] = useState({});
+
+    useEffect(() => {
+        async function getRouteInfo() {
+            const route = await GetRouteByID(routeID);
+            setRouteInfo(route);
+        }
+        getRouteInfo();       
+    }, [routeID]);
+
+    const {color, grade, area, description, setter} = routeInfo;
+
     return(
         <div 
         className='route-info page' 
-        style={{ borderColor: `${color}`}}
+        style={{ borderColor: color}}
         >
             <div className='top-container'>
                 <div className='title'>
-                    <h1>{color.toUpperCase()} {grade}</h1>
+                    <h1>{color} {grade}</h1>
                 </div>
                 <div className='btn'>
                     <AddOrRemoveRoute routeID={parseInt(routeID)} />
                 </div>
             </div>
             <div className='subtitle'>
-                <b>Set by {setter} in the </b>
+            <b>Set by {setter}</b>
+            {area
+            ? <>
+                <b> in the </b>
                 <div className='area-link'>
-                    <b onClick={() => {dispatch(changeSelectedMapArea(area)); navigate('/gym')} }>{area.toUpperCase()}</b>
+                    <b onClick={() => {dispatch(changeSelectedMapArea(area.name)); navigate('/gym')} }>{area.name.toUpperCase()}</b>
                 </div>
-                <b> area</b>
+            </>
+            : null
+            }
             </div>
             <div className='description'>
                 <p>{description}</p>
